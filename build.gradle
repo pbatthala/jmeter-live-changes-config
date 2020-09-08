@@ -1,0 +1,67 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+repositories {
+    jcenter()
+}
+
+ext.jettyVersion = "9.4.31.v20200723"
+ext.jerseyVersion = "2.31"
+ext.jmeterVersion = "5.2"
+ext.slf4jVersion = "1.7.30"
+
+dependencies {
+    implementation 'com.mashape.unirest:unirest-java:1.4.9'
+    implementation "org.eclipse.jetty:jetty-server:${jettyVersion}"
+    implementation "org.eclipse.jetty:jetty-servlet:${jettyVersion}"
+    implementation "org.eclipse.jetty:jetty-util:${jettyVersion}"
+    implementation "org.glassfish.jersey.core:jersey-server:${jerseyVersion}"
+    implementation "org.glassfish.jersey.containers:jersey-container-servlet-core:${jerseyVersion}"
+    implementation "org.glassfish.jersey.containers:jersey-container-jetty-http:${jerseyVersion}"
+    implementation "org.glassfish.jersey.media:jersey-media-json-jackson:${jerseyVersion}"
+    implementation "org.glassfish.jersey.inject:jersey-hk2:${jerseyVersion}"
+    implementation 'org.latencyutils:LatencyUtils:2.0.3'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.0.0'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.junit.platform:junit-platform-runner:1.0.0'
+    testImplementation 'org.junit.vintage:junit-vintage-engine:4.12.0'
+    testImplementation "org.apache.jmeter:ApacheJMeter_config:${jmeterVersion}"
+    testImplementation "org.apache.jmeter:ApacheJMeter_core:${jmeterVersion}"
+    testImplementation "org.apache.jmeter:ApacheJMeter_components:${jmeterVersion}"
+    testImplementation "org.apache.jmeter:jorphan:${jmeterVersion}"
+
+    compileOnly "org.apache.jmeter:ApacheJMeter_config:${jmeterVersion}"
+    compileOnly "org.apache.jmeter:ApacheJMeter_core:${jmeterVersion}"
+    compileOnly "org.apache.jmeter:ApacheJMeter_components:${jmeterVersion}"
+    compileOnly "org.apache.jmeter:jorphan:${jmeterVersion}"
+
+    runtimeOnly "org.slf4j:slf4j-api:${slf4jVersion}"
+    runtimeOnly "org.slf4j:slf4j-log4j12:${slf4jVersion}"
+    runtimeOnly 'javax.ws.rs:javax.ws.rs-api:2.0.1'
+    runtimeOnly 'com.tdunning:json:1.8'
+}
+
+group = 'io.github.delirius325'
+version = '1.0.0'
+description = 'jmeter.config.livechanges'
+sourceCompatibility = '1.9'
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}

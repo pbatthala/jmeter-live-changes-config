@@ -217,9 +217,6 @@ public class LiveChanges extends ConfigTestElement implements TestBean, LoopIter
         }
     }
 
-    /**
-     * Getters / Setters
-     */
     public int getHttpServerPort() {
         return this.httpServerPort;
     }

@@ -1,6 +1,5 @@
 package io.github.delirius325.jmeter.config.livechanges.api;
 
-import io.github.delirius325.jmeter.config.livechanges.LiveChanges;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
